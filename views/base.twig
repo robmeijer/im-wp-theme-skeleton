@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    {% if (function('is_home')) %}
+        <title>{{ site.title }} - {{ site.description }}</title>
+    {% else %}
+        <title>{{ function('wp_title') }} - {{ site.title }}</title>
+    {% endif %}
+
+    <link rel="stylesheet" href="{{theme.uri}}/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{theme.uri}}/style.css">
+</head>
+<body>
+{% include 'partials/header/header.twig' %}
+<main>
+    {% block content 'Sorry, no content' %}
+</main>
+</body>
+</html>

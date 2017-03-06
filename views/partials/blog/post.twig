@@ -1,0 +1,9 @@
+{% for post in posts %}
+    <div class="blog-post">
+        <h2 class="blog-post-title"><a href="{{ post.link }}">{{ post.title }}</a></h2>
+        <p class="blog-post-meta">
+            {{ post.date }} by <a href="{{ post.author.link }}">{{ post.author }}</a>
+        </p>
+        {{ post.content|raw }}
+    </div><!-- /.blog-post -->
+{% endfor %}
