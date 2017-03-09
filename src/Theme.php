@@ -2,6 +2,8 @@
 
 namespace IM\Bedrock;
 
+use IM\Bedrock\Widget\AboutWidget;
+use IM\Bedrock\WidgetArea\CustomLinksWidgetArea;
 use Timber\Site;
 use Timber\Timber;
 
@@ -27,20 +29,36 @@ class Theme extends Site
         return $this->timber;
     }
 
-    public function widgetsInit()
+    public function registerWidgets()
     {
-        register_sidebar([
-            'name' => 'Custom Links',
-            'id' => 'custom_links',
-            'before_widget' => '',
-            'after_widget'  => '',
-            'before_title'  => '',
-            'after_title'   => '',
-        ]);
+        $this->registerWidget(AboutWidget::class);
+    }
+
+    public function registerWidgetAreas()
+    {
+        $this->registerWidgetArea(new CustomLinksWidgetArea());
     }
 
     protected function init()
     {
-        add_action('widgets_init', [$this, 'widgetsInit']);
+        add_action('wp_loaded', [$this, 'registerWidgetAreas']);
+        add_action('widgets_init', [$this, 'registerWidgets']);
+    }
+
+    protected function registerWidgetArea(WidgetArea $area)
+    {
+        register_sidebar([
+            'id'   => $area->id(),
+            'name' => $area->name(),
+            'before_widget' => $area->beforeWidget(),
+            'after_widget'  => $area->afterWidget(),
+            'before_title'  => $area->beforeTitle(),
+            'after_title'   => $area->afterTitle(),
+        ]);
+    }
+
+    protected function registerWidget($class)
+    {
+        register_widget($class);
     }
 }

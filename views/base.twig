@@ -11,13 +11,15 @@
         <title>{{ function('wp_title') }} - {{ site.title }}</title>
     {% endif %}
 
-    <link rel="stylesheet" href="{{theme.uri}}/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="{{theme.uri}}/style.css">
+    <link rel="stylesheet" href="{{ theme.uri }}/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ theme.uri }}/style.css">
+    {{ function('wp_head') }}
 </head>
 <body>
 {% include 'partials/header/header.twig' %}
 <main>
     {% block content 'Sorry, no content' %}
 </main>
+{{ function('wp_footer') }}
 </body>
 </html>

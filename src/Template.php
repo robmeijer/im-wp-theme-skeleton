@@ -43,7 +43,6 @@ class Template
     protected function defaultContext()
     {
         return [
-            'custom_links' => $this->theme->timber()->get_widgets('custom_links'),
             'pagination' => $this->theme->timber()->get_pagination(),
         ];
     }
