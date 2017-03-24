@@ -18,6 +18,10 @@
 <body>
 {% include 'partials/header/header.twig' %}
 <main>
+    {% block breadcrumbs %}
+    <ol class="breadcrumb"></ol>
+    {% endblock %}
+
     {% block content 'Sorry, no content' %}
 </main>
 {{ function('wp_footer') }}

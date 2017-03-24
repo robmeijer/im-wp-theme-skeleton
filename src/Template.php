@@ -35,15 +35,15 @@ class Template
         $this->theme->timber()->render([$this->view], $context);
     }
 
-    protected function context()
-    {
-        return [];
-    }
-
     protected function defaultContext()
     {
         return [
             'pagination' => $this->theme->timber()->get_pagination(),
         ];
+    }
+
+    protected function context()
+    {
+        return [];
     }
 }
