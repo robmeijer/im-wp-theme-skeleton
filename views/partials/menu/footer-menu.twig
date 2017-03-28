@@ -1,0 +1,9 @@
+<nav class="blog-nav">
+    {% for item in menu.top_menu.items %}
+        {% if 'current-menu-item' in item.classes or 'current-menu-parent' in item.classes %}
+            <span class="blog-nav-item active">{{ item.title }}</span>
+        {% else %}
+            <a class="blog-nav-item" href="{{ item.link }}" target="{{ item.target }}">{{ item.title }}</a>
+        {% endif %}
+    {% endfor %}
+</nav>

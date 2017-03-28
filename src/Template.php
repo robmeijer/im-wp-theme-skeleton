@@ -2,6 +2,8 @@
 
 namespace IM\Bedrock;
 
+use Timber\Menu;
+
 class Template
 {
     /**
@@ -39,11 +41,25 @@ class Template
     {
         return [
             'pagination' => $this->theme->timber()->get_pagination(),
+            'menu' => $this->buildMenus(),
         ];
     }
 
     protected function context()
     {
         return [];
+    }
+
+    protected function buildMenus()
+    {
+        $menus = [];
+
+        foreach (get_nav_menu_locations() as $location => $menu) {
+            if ($menu !== 0) {
+                $menus[$location] = new Menu($menu);
+            }
+        }
+
+        return $menus;
     }
 }

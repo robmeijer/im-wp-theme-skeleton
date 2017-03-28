@@ -2,6 +2,8 @@
 
 namespace IM\Bedrock;
 
+use IM\Bedrock\MenuLocation\FooterMenuLocation;
+use IM\Bedrock\MenuLocation\TopMenuLocation;
 use IM\Bedrock\Widget\AboutWidget;
 use IM\Bedrock\WidgetArea\CustomLinksWidgetArea;
 use Timber\Site;
@@ -39,8 +41,17 @@ class Theme extends Site
         $this->registerWidgetArea(new CustomLinksWidgetArea());
     }
 
+    public function registerMenuLocations()
+    {
+        $this->registerMenuLocation(new TopMenuLocation());
+        $this->registerMenuLocation(new FooterMenuLocation());
+    }
+
     protected function init()
     {
+        parent::init();
+
+        add_action('after_setup_theme', [$this, 'registerMenuLocations']);
         add_action('wp_loaded', [$this, 'registerWidgetAreas']);
         add_action('widgets_init', [$this, 'registerWidgets']);
     }
@@ -60,5 +71,13 @@ class Theme extends Site
     protected function registerWidget($class)
     {
         register_widget($class);
+    }
+
+    protected function registerMenuLocation(MenuLocation $menuLocation)
+    {
+        register_nav_menu(
+            $menuLocation->location(),
+            $menuLocation->description()
+        );
     }
 }

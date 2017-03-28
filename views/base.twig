@@ -13,7 +13,7 @@
 
     <link rel="stylesheet" href="{{ theme.uri }}/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ theme.uri }}/style.css">
-    {{ function('wp_head') }}
+    {{ wp_head }}
 </head>
 <body>
 {% include 'partials/header/header.twig' %}
@@ -24,6 +24,11 @@
 
     {% block content 'Sorry, no content' %}
 </main>
-{{ function('wp_footer') }}
+{{ wp_footer }}
+<div class="blog-masthead">
+    <div class="container">
+        {% include 'partials/menu/footer-menu.twig' %}
+    </div>
+</div>
 </body>
 </html>
