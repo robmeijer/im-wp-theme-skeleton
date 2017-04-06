@@ -1,5 +1,5 @@
-<nav class="blog-nav">
-    {% for item in menu.top_menu.items %}
+<nav class="blog-nav" style="background-color: #000;">
+    {% for item in menu.footer_menu.items %}
         {% if 'current-menu-item' in item.classes or 'current-menu-parent' in item.classes %}
             <span class="blog-nav-item active">{{ item.title }}</span>
         {% else %}

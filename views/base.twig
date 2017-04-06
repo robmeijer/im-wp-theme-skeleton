@@ -19,7 +19,7 @@
 {% include 'partials/header/header.twig' %}
 <main>
     {% block breadcrumbs %}
-    <ol class="breadcrumb"></ol>
+        {% include 'partials/breadcrumbs/breadcrumbs.twig' %}
     {% endblock %}
 
     {% block content 'Sorry, no content' %}

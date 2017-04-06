@@ -7,30 +7,9 @@ use IM\Bedrock\MenuLocation\TopMenuLocation;
 use IM\Bedrock\Widget\AboutWidget;
 use IM\Bedrock\WidgetArea\CustomLinksWidgetArea;
 use Timber\Site;
-use Timber\Timber;
 
 class Theme extends Site
 {
-    /**
-     * @var Timber
-     */
-    protected $timber;
-
-    public function __construct(Timber $timber)
-    {
-        parent::__construct();
-
-        $this->timber = $timber;
-    }
-
-    /**
-     * @return Timber
-     */
-    public function timber()
-    {
-        return $this->timber;
-    }
-
     public function registerWidgets()
     {
         $this->registerWidget(AboutWidget::class);

@@ -3,54 +3,92 @@
 namespace IM\Bedrock;
 
 use Timber\Menu;
+use Timber\Timber;
 
-class Template
+abstract class Template
 {
-    /**
-     * @var Theme
-     */
-    protected $theme;
-
     /**
      * @var string
      */
     protected $view;
 
     /**
+     * @var Breadcrumbs
+     */
+    protected $breadcrumbs;
+
+    /**
+     * @var \Timber\Timber
+     */
+    protected $timber;
+
+    /**
      * Template constructor.
      *
-     * @param Theme $theme
+     * @param Timber $timber
+     * @param Breadcrumbs $breadcrumbs
      */
-    public function __construct(Theme $theme)
+    public function __construct(Timber $timber, Breadcrumbs $breadcrumbs)
     {
-        $this->theme = $theme;
+        $this->breadcrumbs = $breadcrumbs;
+        $this->timber = $timber;
     }
 
+    /**
+     * Render the template.
+     */
     public function render()
     {
-        $context = array_merge(
-            $this->theme->timber()->get_context(),
-            $this->defaultContext(),
-            $this->context()
+        $this->timber->render(
+            [$this->view()],
+            array_merge(
+                $this->timber->get_context(),
+                $this->defaultContext(),
+                $this->context()
+            )
         );
-
-        $this->theme->timber()->render([$this->view], $context);
     }
 
+    /**
+     * The view for the given template.
+     *
+     * @return string
+     */
+    public function view()
+    {
+        return $this->view;
+    }
+
+    /**
+     * The default context loaded for all templates.
+     *
+     * @return array
+     */
     protected function defaultContext()
     {
         return [
-            'pagination' => $this->theme->timber()->get_pagination(),
-            'menu' => $this->buildMenus(),
+            'pagination' => $this->timber->get_pagination(),
+            'menu' => $this->menus(),
+            'breadcrumbs' => $this->breadcrumbs(),
         ];
     }
 
+    /**
+     * The template specific context.
+     *
+     * @return array
+     */
     protected function context()
     {
         return [];
     }
 
-    protected function buildMenus()
+    /**
+     * Build all navigation menus.
+     *
+     * @return array
+     */
+    protected function menus()
     {
         $menus = [];
 
@@ -61,5 +99,13 @@ class Template
         }
 
         return $menus;
+    }
+
+    /**
+     * @return \IM\Bedrock\Breadcrumbs
+     */
+    protected function breadcrumbs()
+    {
+        return $this->breadcrumbs;
     }
 }

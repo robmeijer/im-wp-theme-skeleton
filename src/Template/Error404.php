@@ -6,5 +6,8 @@ use IM\Bedrock\Template;
 
 class Error404 extends Template
 {
+    /**
+     * @var string
+     */
     protected $view = 'template/error-404.twig';
 }

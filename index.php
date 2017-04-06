@@ -2,23 +2,30 @@
 
 switch (true) {
     case is_home():
-        $template = new IM\Bedrock\Template\Home($theme);
+        $breadcrumbs = new \IM\Bedrock\Breadcrumbs\HomeBreadcrumbs($timber);
+        $template = new IM\Bedrock\Template\Home($timber, $breadcrumbs);
         break;
     case is_archive():
-        $template = new IM\Bedrock\Template\Archive($theme);
+        $term = get_queried_object();
+        $breadcrumbs = new \IM\Bedrock\Breadcrumbs\ArchiveBreadcrumbs($timber, $term);
+        $template = new IM\Bedrock\Template\Archive($timber, $breadcrumbs);
         break;
     case is_page():
-        $template = new IM\Bedrock\Template\Page($theme);
+        $breadcrumbs = new \IM\Bedrock\Breadcrumbs\PageBreadcrumbs($timber);
+        $template = new IM\Bedrock\Template\Page($timber, $breadcrumbs);
         break;
     case is_single():
-        $template = new IM\Bedrock\Template\Single($theme);
+        $breadcrumbs = new \IM\Bedrock\Breadcrumbs\SingleBreadcrumbs($timber);
+        $template = new IM\Bedrock\Template\Single($timber, $breadcrumbs);
         break;
     case is_404():
-        $template = new IM\Bedrock\Template\Error404($theme);
+        $breadcrumbs = new \IM\Bedrock\Breadcrumbs\HomeBreadcrumbs($timber);
+        $template = new IM\Bedrock\Template\Error404($timber, $breadcrumbs);
         break;
     case is_search():
     default:
-        $template = new IM\Bedrock\Template\Index($theme);
+        $breadcrumbs = new \IM\Bedrock\Breadcrumbs\HomeBreadcrumbs($timber);
+        $template = new IM\Bedrock\Template\Index($timber, $breadcrumbs);
         break;
 }
 

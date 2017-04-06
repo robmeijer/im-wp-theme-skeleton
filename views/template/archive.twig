@@ -1,15 +1,5 @@
 {%  extends 'base.twig' %}
 
-{% block breadcrumbs %}
-    {% if function('is_date') %}
-        {% include 'partials/breadcrumbs/archive-date.twig' %}
-    {% elseif function('is_category') %}
-        {% include 'partials/breadcrumbs/archive-category.twig' %}
-    {% elseif function('is_author') %}
-        {% include 'partials/breadcrumbs/archive-author.twig' %}
-    {% endif %}
-{% endblock %}
-
 {% block content %}
     <div class="container">
         <div class="blog-header">
