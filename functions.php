@@ -6,3 +6,5 @@ require_once __DIR__ . '/vendor/autoload.php';
 
 $timber = new Timber\Timber();
 $theme = new Theme();
+
+do_action('bedrock_theme_loaded');

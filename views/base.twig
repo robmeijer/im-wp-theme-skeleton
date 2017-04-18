@@ -5,21 +5,19 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    {% if (function('is_home')) %}
-        <title>{{ site.title }} - {{ site.description }}</title>
-    {% else %}
-        <title>{{ function('wp_title') }} - {{ site.title }}</title>
-    {% endif %}
+    {% block title %}
+        <title>{{ page.title }} - {{ site.title }}</title>
+    {% endblock %}
 
     <link rel="stylesheet" href="{{ theme.uri }}/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ theme.uri }}/style.css">
     {{ wp_head }}
 </head>
 <body>
-{% include 'partials/header/header.twig' %}
+{% include 'partials/header.twig' %}
 <main>
     {% block breadcrumbs %}
-        {% include 'partials/breadcrumbs/breadcrumbs.twig' %}
+        {% include 'partials/breadcrumbs.twig' %}
     {% endblock %}
 
     {% block content 'Sorry, no content' %}

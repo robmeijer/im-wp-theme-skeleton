@@ -15,6 +15,9 @@ class ArchiveBreadcrumbs extends Breadcrumbs
         $this->term = $term;
     }
 
+    /**
+     * @return array
+     */
     public function items()
     {
         $items = [];
@@ -46,6 +49,9 @@ class ArchiveBreadcrumbs extends Breadcrumbs
         return $items;
     }
 
+    /**
+     * @return array
+     */
     public function target()
     {
         return [
@@ -53,6 +59,9 @@ class ArchiveBreadcrumbs extends Breadcrumbs
         ];
     }
 
+    /**
+     * @return string
+     */
     private function targetTitle()
     {
         if (is_date()) {
@@ -62,6 +71,9 @@ class ArchiveBreadcrumbs extends Breadcrumbs
         return $this->term->name ?: $this->term->display_name ?: 'No Title';
     }
 
+    /**
+     * @return string
+     */
     private function getDateTargetTitle()
     {
         if (is_day()) {

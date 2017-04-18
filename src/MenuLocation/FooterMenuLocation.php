@@ -1,31 +1,18 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: meijerw6
- * Date: 28/03/2017
- * Time: 16:38
- */
 
 namespace IM\Bedrock\MenuLocation;
-
 
 use IM\Bedrock\MenuLocation;
 
 class FooterMenuLocation extends MenuLocation
 {
     /**
-     * @return string
+     * @var string
      */
-    public function location()
-    {
-        return 'footer_menu';
-    }
+    protected $location = 'footer_menu';
 
     /**
-     * @return string
+     * @var string
      */
-    public function description()
-    {
-        return 'Footer Menu';
-    }
+    protected $description = 'Footer Menu';
 }

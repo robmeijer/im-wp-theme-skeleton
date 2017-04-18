@@ -7,18 +7,12 @@ use IM\Bedrock\MenuLocation;
 class TopMenuLocation extends MenuLocation
 {
     /**
-     * @return string
+     * @var string
      */
-    public function location()
-    {
-        return 'top_menu';
-    }
+    protected $location = 'top_menu';
 
     /**
-     * @return string
+     * @var string
      */
-    public function description()
-    {
-        return 'Top Menu';
-    }
+    protected $description = 'Top Menu';
 }
