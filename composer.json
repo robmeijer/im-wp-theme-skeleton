@@ -5,6 +5,7 @@
         }
     },
     "require": {
-        "timber/timber": "^1.2"
+        "timber/timber": "^1.2",
+        "league/container": "^2.4"
     }
 }

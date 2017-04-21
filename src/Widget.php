@@ -34,9 +34,7 @@ class Widget extends WP_Widget
      */
     public function __construct()
     {
-        global $timber;
-
-        $this->timber = $timber;
+        $this->timber = fabric('timber');
 
         parent::__construct($this->idBase, $this->name, $this->widgetOptions, $this->controlOptions);
     }
